@@ -31,12 +31,52 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+            "wrapper": {"width": "", "class": "", "id": ""},
             "return_format": "array"
+        },
+        {
+            "key": "field_cta_description",
+            "label": "Description",
+            "name": "cta_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short supporting line below the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "default_value": "",
+            "maxlength": "",
+            "rows": "2",
+            "placeholder": "Tell us about your project...",
+            "new_lines": ""
+        },
+        {
+            "key": "field_cta_secondary_button",
+            "label": "Secondary Button",
+            "name": "cta_secondary_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Optional second button (outline style).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "return_format": "array"
+        },
+        {
+            "key": "field_cta_trust_text",
+            "label": "Trust Line",
+            "name": "cta_trust_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small trust signals below buttons. Separate with ·",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Typical response within 24 hours · US/UK timezone support · NDA on request",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
