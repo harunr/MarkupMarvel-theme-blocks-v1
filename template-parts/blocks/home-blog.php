@@ -5,8 +5,9 @@
  */
 
 // 1. Fetch static ACF fields
-$subtitle = get_field('blog_subtitle') ?: 'BLOG';
-$title    = get_field('blog_title') ?: 'We love to share knowledge';
+$subtitle     = get_field('blog_subtitle') ?: 'BLOG';
+$title        = get_field('blog_title') ?: 'We love to share knowledge';
+$description  = get_field('blog_description') ?: '';
 
 // 2. Run the WP_Query and package the dynamic post data into an array for Next.js
 $posts_data = [];
@@ -54,6 +55,7 @@ if ( $blog_query->have_posts() ) {
 <div class="blog-wrap wp-block-acf-home-blog"
      data-subtitle="<?php echo esc_attr($subtitle); ?>"
      data-title="<?php echo esc_attr($title); ?>"
+     data-description="<?php echo esc_attr($description); ?>"
      data-posts='<?php echo esc_attr(wp_json_encode($posts_data)); ?>'>
     
     <div class="common-wrap clear">

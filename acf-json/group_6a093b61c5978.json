@@ -41,6 +41,22 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_blog_description",
+            "label": "Description",
+            "name": "blog_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short supporting line below the section heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "default_value": "",
+            "maxlength": "",
+            "rows": "2",
+            "placeholder": "Technical guides and case studies for teams building with headless WordPress, Next.js, and Shopify.",
+            "new_lines": ""
         }
     ],
     "location": [
