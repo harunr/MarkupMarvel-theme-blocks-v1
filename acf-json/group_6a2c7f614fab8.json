@@ -3,6 +3,26 @@
     "title": "Work Details",
     "fields": [
         {
+            "key": "field_work_card_title",
+            "label": "Card Title",
+            "name": "card_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Short title shown on homepage/archive cards. Leave blank to use the full post title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "show_in_graphql": 1,
+            "graphql_description": "",
+            "graphql_field_name": "cardTitle",
+            "graphql_non_null": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. Airgle — Medical Air Purifier",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a09660b270f8",
             "label": "work category",
             "name": "work_category",
