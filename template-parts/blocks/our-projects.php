@@ -31,12 +31,16 @@ if ( $work_query->have_posts() ) {
         $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
         $fallback_img = '/assets/img/placeholder.jpg';
         
+        $raw_stack = get_field('tech_stack', get_the_ID()) ?: '';
+        $stack_tags = array_filter(array_map('trim', explode(',', $raw_stack)));
+
         $projects_data[] = array(
-            'id'      => get_the_ID(),
-            'title'   => get_the_title(),
-            'slug'    => get_post_field('post_name', get_post()),
-            'excerpt' => wp_trim_words(strip_tags($excerpt), 15), // Added strip_tags for cleaner JSON
-            'thumb'   => $thumb_url ? $thumb_url : $fallback_img
+            'id'         => get_the_ID(),
+            'title'      => get_the_title(),
+            'slug'       => get_post_field('post_name', get_post()),
+            'excerpt'    => wp_trim_words(strip_tags($excerpt), 15),
+            'thumb'      => $thumb_url ? $thumb_url : $fallback_img,
+            'stack_tags' => array_values($stack_tags)
         );
     }
     wp_reset_postdata(); 
