@@ -25,27 +25,25 @@ if ( $blog_query->have_posts() ) {
     while ( $blog_query->have_posts() ) {
         $blog_query->the_post();
         
+        $cats = get_the_category();
+        $category = !empty($cats) ? $cats[0]->name : '';
+
         $posts_data[] = array(
-            // ADDED: id and slug so Next.js can build correct /blog/[slug] links
-            'id'      => (string) get_the_ID(),
-            'slug'    => get_post_field( 'post_name', get_the_ID() ),
-            
-            'link'    => get_permalink(), // Kept for WP safety
-            'title'   => get_the_title(),
-            'excerpt' => wp_trim_words( get_the_excerpt(), 20, '...' ),
-            
-            // ✨ FORMATTED: Match the Next.js `featuredImage` object structure
+            'id'       => (string) get_the_ID(),
+            'slug'     => get_post_field( 'post_name', get_the_ID() ),
+            'link'     => get_permalink(),
+            'title'    => get_the_title(),
+            'excerpt'  => wp_trim_words( get_the_excerpt(), 20, '...' ),
+            'category' => $category,
             'featuredImage' => array(
                 'node' => array(
                     'sourceUrl' => get_the_post_thumbnail_url( get_the_ID(), 'large' ),
                     'altText'   => get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true )
                 )
             ),
-            
-            // Kept original fields just in case they are used elsewhere
-            'thumb'   => get_the_post_thumbnail_url( get_the_ID(), 'large' ),
-            'author'  => get_the_author_meta('display_name'),
-            'avatar'  => get_avatar_url( get_the_author_meta('ID') )
+            'thumb'  => get_the_post_thumbnail_url( get_the_ID(), 'large' ),
+            'author' => get_the_author_meta('display_name'),
+            'avatar' => get_avatar_url( get_the_author_meta('ID') )
         );
     }
     // CRITICAL: Always reset post data after a custom query
