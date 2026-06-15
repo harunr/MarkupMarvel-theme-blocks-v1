@@ -43,6 +43,22 @@
             "append": ""
         },
         {
+            "key": "field_services_description",
+            "label": "Description",
+            "name": "services_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short supporting line below the section heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "default_value": "",
+            "maxlength": "",
+            "rows": "2",
+            "placeholder": "From headless WordPress to Shopify — end-to-end web development for brands that mean business.",
+            "new_lines": ""
+        },
+        {
             "key": "field_6a09386c692ca",
             "label": "Services List",
             "name": "services_list",

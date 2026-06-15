@@ -5,8 +5,9 @@
  */
 
 // 1. Fetch static ACF fields
-$subtitle = get_field('services_subtitle') ?: 'OUR SERVICES';
-$title    = get_field('services_title') ?: 'The services we provide for you';
+$subtitle     = get_field('services_subtitle') ?: 'OUR SERVICES';
+$title        = get_field('services_title') ?: 'Web development services that scale with you';
+$description  = get_field('services_description') ?: '';
 
 // 2. Run the WP_Query and package the dynamic data into an array for Next.js
 $services_data = [];
@@ -40,6 +41,7 @@ if ( $homepage_services->have_posts() ) {
 <div class="our-services-wrap wp-block-acf-our-services"
      data-subtitle="<?php echo esc_attr($subtitle); ?>"
      data-title="<?php echo esc_attr($title); ?>"
+     data-description="<?php echo esc_attr($description); ?>"
      data-services='<?php echo esc_attr(wp_json_encode($services_data)); ?>'>
     
     <div class="common-wrap clear">
