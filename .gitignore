@@ -1,0 +1,21 @@
+# WordPress
+*.log
+error_log
+debug.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.code-workspace
+.history/
+.vscode/
+
+# Build artifacts
+node_modules/
+*.min.js.map
+
+# Sensitive
+wp-config.php
+.env

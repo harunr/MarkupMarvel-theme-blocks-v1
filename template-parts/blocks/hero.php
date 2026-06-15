@@ -5,17 +5,22 @@
  */
 
 // 1. Fetch ALL your ACF data at the top
-$heading     = get_field('hero_heading') ?: 'WE ARE WEBTRICKER.<br>A WEB DESIGN & DEVELOPMENT <span>AGENCY.</span>';
-$subtext     = get_field('hero_subtext') ?: 'A small, effective & creative solution, that can help you to grow your business bigger.';
-$primary_btn = get_field('hero_primary_button'); // This will be an ACF 'Link' field array
-$second_btn  = get_field('hero_secondary_button'); // This will be an ACF 'Link' field array
+$eyebrow     = get_field('hero_eyebrow') ?: '';
+$heading     = get_field('hero_heading') ?: '';
+$subtext     = get_field('hero_subtext') ?: '';
+$primary_btn = get_field('hero_primary_button');
+$second_btn  = get_field('hero_secondary_button');
+$cred_rows   = get_field('hero_cred_items') ?: [];
+$cred_items  = array_map(fn($row) => $row['cred_item_text'] ?? '', (array) $cred_rows);
 ?>
 
 <div class="hero-wrap wp-block-acf-hero-banner"
+     data-hero-eyebrow="<?php echo esc_attr($eyebrow); ?>"
      data-hero-heading="<?php echo esc_attr($heading); ?>"
      data-hero-subtext="<?php echo esc_attr($subtext); ?>"
      data-hero-primary-button='<?php echo esc_attr(wp_json_encode($primary_btn)); ?>'
-     data-hero-secondary-button='<?php echo esc_attr(wp_json_encode($second_btn)); ?>'>
+     data-hero-secondary-button='<?php echo esc_attr(wp_json_encode($second_btn)); ?>'
+     data-hero-cred-items='<?php echo esc_attr(wp_json_encode($cred_items)); ?>'>
     
     <div class="common-pattern">
         <div></div>

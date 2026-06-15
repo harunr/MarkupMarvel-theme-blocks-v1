@@ -3,12 +3,32 @@
     "title": "Block: Hero Banner",
     "fields": [
         {
+            "key": "field_hero_eyebrow",
+            "label": "Eyebrow Text",
+            "name": "hero_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Short tag line shown above the headline. E.g. \"Headless · Next.js · Shopify · WordPress\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Headless · Next.js · Shopify · WordPress",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a0934b160163",
             "label": "Heading",
             "name": "hero_heading",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Supports inline HTML: &lt;br&gt; for line breaks, &lt;em&gt; for accent colour, &lt;span&gt; for green.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -73,6 +93,50 @@
                 "id": ""
             },
             "return_format": "array"
+        },
+        {
+            "key": "field_hero_cred_items",
+            "label": "Credibility Strip Items",
+            "name": "hero_cred_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add up to 8 short credential items shown as a dot-separated strip below the subtext.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "min": 0,
+            "max": 8,
+            "collapsed": "",
+            "button_label": "Add Item",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_hero_cred_item_text",
+                    "label": "Item Text",
+                    "name": "cred_item_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "e.g. 17+ years experience",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_hero_cred_items"
+                }
+            ]
         }
     ],
     "location": [
@@ -93,5 +157,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1779006454
+    "modified": 1781518019
 }

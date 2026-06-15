@@ -132,18 +132,18 @@ function markupmarvel_scripts() {
     // ==========================================
     // 1. CSS FILES
     // ==========================================
-    
+
     // Core theme style (Required by WP)
     wp_enqueue_style( 'markupmarvel-style', get_stylesheet_uri(), array(), _S_VERSION );
 
     // Slick Core (Loads first)
     wp_enqueue_style( 'markupmarvel-slick', get_template_directory_uri() . '/assets/css/slick.min.css', array(), '1.8.1' );
-    
+
     // Slick Theme (Depends on Slick Core)
     wp_enqueue_style( 'markupmarvel-slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.min.css', array('markupmarvel-slick'), '1.8.1' );
-    
+
     wp_enqueue_style( 'magnific-popup', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css' );
-    
+
     // Main Custom Style (Loads last so it can override styles)
     wp_enqueue_style( 'markupmarvel-custom-style', get_template_directory_uri() . '/assets/css/style.css', array('markupmarvel-slick-theme'), _S_VERSION );
 
@@ -176,20 +176,20 @@ function markupmarvel_scripts() {
     wp_enqueue_script( 'magnific-popup', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array('jquery'), null, true );
 
     // Common Scripts (Loads dead last)
-    wp_enqueue_script( 
-        'markupmarvel-common-scripts', 
-        get_template_directory_uri() . '/assets/js/common-scripts.js', 
+    wp_enqueue_script(
+        'markupmarvel-common-scripts',
+        get_template_directory_uri() . '/assets/js/common-scripts.js',
         array(
-            'jquery', 
-            'markupmarvel-gsap', 
-            'markupmarvel-slick-js', 
-            'markupmarvel-scrolltrigger', 
+            'jquery',
+            'markupmarvel-gsap',
+            'markupmarvel-slick-js',
+            'markupmarvel-scrolltrigger',
             'markupmarvel-marquee',
             'markupmarvel-splitting',
             'markupmarvel-lenis'
-        ), 
-        _S_VERSION, 
-        true 
+        ),
+        _S_VERSION,
+        true
     );
 
     // Default Underscores navigation
@@ -230,7 +230,7 @@ function markupmarvel_acf_init_block_types() {
             'icon'              => 'cover-image',
             'keywords'          => array( 'hero', 'banner', 'header' ),
         ));
-        
+
         acf_register_block_type(array(
             'name'              => 'find-us',
             'title'             => __('Find Us (Logos)'),
@@ -531,7 +531,7 @@ function markupmarvel_work_cpt() {
         'menu_icon'          => 'dashicons-portfolio',
         'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
         'show_in_rest'       => true,
-        'rewrite'            => array('slug' => 'work'), 
+        'rewrite'            => array('slug' => 'work'),
         'show_in_graphql'    => true,
         'graphql_single_name' => 'work',
         'graphql_plural_name' => 'works',
@@ -568,7 +568,7 @@ function markupmarvel_services_cpt() {
         'menu_icon'          => 'dashicons-admin-tools',
         'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
         'show_in_rest'       => true,
-        'rewrite'            => array('slug' => 'services'), 
+        'rewrite'            => array('slug' => 'services'),
         'show_in_graphql'    => true,
         'graphql_single_name' => 'service',
         'graphql_plural_name' => 'services',
@@ -581,30 +581,161 @@ add_action('init', 'markupmarvel_services_cpt');
 // Register a highly stable native GraphQL field for the Service Icon
 add_action( 'graphql_register_types', function() {
     register_graphql_field( 'Service', 'serviceIcon', [
-        'type'        => 'String', // Returns the direct ready-to-use URL string
+        'type'        => 'String',
         'description' => __( 'Native headless bridge for the service custom icon URL', 'markupmarvel' ),
         'resolve'     => function( $post ) {
-            // Fetch the raw meta field saved by ACF
             $image_id = get_post_meta( $post->databaseId, 'service_icon', true );
-            
+
             if ( ! $image_id ) {
                 return null;
             }
-            
-            // If it's saved as an ID, grab the direct URL string instantly
+
             if ( is_numeric( $image_id ) ) {
                 return wp_get_attachment_url( $image_id );
             }
-            
-            // Fallback: If ACF saved the raw image URL directly as a string
+
             return $image_id;
         }
     ]);
 });
 
+// ==========================================================================
+// 1. CPT Registration — Featured Service
+// ==========================================================================
+add_action('init', function() {
+    register_post_type('featured_service', [
+        'labels' => [
+            'name'          => 'Featured Services',
+            'singular_name' => 'Featured Service',
+            'add_new_item'  => 'Add New Featured Service',
+            'edit_item'     => 'Edit Featured Service',
+            'view_item'     => 'View Featured Service',
+            'all_items'     => 'All Featured Services',
+        ],
+        'public'              => false,
+        'publicly_queryable'  => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_nav_menus'   => false,
+        'show_in_graphql'     => true,
+        'graphql_single_name' => 'featuredService',
+        'graphql_plural_name' => 'featuredServices',
+        'supports'            => ['title', 'excerpt', 'thumbnail'],
+        'has_archive'         => false,
+        'rewrite'             => false,
+    ]);
+});
+
+// ==========================================================================
+// 2. Meta Fields Registration
+// ==========================================================================
+add_action('init', function() {
+    register_post_meta('featured_service', 'cta_url', [
+        'show_in_rest'  => true,
+        'single'        => true,
+        'type'          => 'string',
+        'auth_callback' => fn() => current_user_can('edit_posts'),
+    ]);
+    register_post_meta('featured_service', 'cta_text', [
+        'show_in_rest'  => true,
+        'single'        => true,
+        'type'          => 'string',
+        'auth_callback' => fn() => current_user_can('edit_posts'),
+    ]);
+});
+
+// ==========================================================================
+// 3. WPGraphQL Custom Fields
+// ==========================================================================
+add_action('graphql_register_types', function() {
+    register_graphql_field('FeaturedService', 'ctaUrl', [
+        'type'        => 'String',
+        'description' => 'CTA Button URL',
+        'resolve'     => fn($post) => get_post_meta(
+            $post->databaseId, 'cta_url', true
+        ),
+    ]);
+    register_graphql_field('FeaturedService', 'ctaText', [
+        'type'        => 'String',
+        'description' => 'CTA Button Text',
+        'resolve'     => fn($post) => get_post_meta(
+            $post->databaseId, 'cta_text', true
+        ),
+    ]);
+});
+
+// ==========================================================================
+// 4. Admin Meta Box — CTA Settings
+// ==========================================================================
+add_action('add_meta_boxes', function() {
+    add_meta_box(
+        'featured_service_cta',
+        'CTA Settings',
+        'render_cta_meta_box',
+        'featured_service',
+        'side',
+        'default'
+    );
+});
+
+function render_cta_meta_box($post) {
+    wp_nonce_field('fs_cta_save', 'fs_cta_nonce');
+    $url  = get_post_meta($post->ID, 'cta_url', true);
+    $text = get_post_meta($post->ID, 'cta_text', true);
+    ?>
+    <p>
+        <label><strong>CTA URL:</strong></label><br>
+        <input
+            type="text"
+            name="cta_url"
+            value="<?php echo esc_attr($url); ?>"
+            style="width:100%;margin-top:4px"
+            placeholder="/services/headless-wordpress"
+        >
+    </p>
+    <p style="margin-top:10px">
+        <label><strong>CTA Text:</strong></label><br>
+        <input
+            type="text"
+            name="cta_text"
+            value="<?php echo esc_attr($text); ?>"
+            style="width:100%;margin-top:4px"
+            placeholder="See How It Works"
+        >
+    </p>
+    <?php
+}
+
+// ==========================================================================
+// 5. Save Meta Box Data
+// ==========================================================================
+add_action('save_post_featured_service', function($post_id) {
+    if (!isset($_POST['fs_cta_nonce'])) return;
+    if (!wp_verify_nonce($_POST['fs_cta_nonce'], 'fs_cta_save')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['cta_url'])) {
+        update_post_meta(
+            $post_id,
+            'cta_url',
+            sanitize_url($_POST['cta_url'])
+        );
+    }
+    if (isset($_POST['cta_text'])) {
+        update_post_meta(
+            $post_id,
+            'cta_text',
+            sanitize_text_field($_POST['cta_text'])
+        );
+    }
+});
+
 // =========================================================================
 // ACF JSON SETTINGS
 // =========================================================================
+// save_json: ACF changes are backed up to /acf-json folder (version control).
+// load_json is DISABLED — field groups load from DB only.
+// Loading from both DB + acf-json folder caused duplicate metaboxes on post edit screens.
 
 add_filter('acf/settings/save_json', 'markupmarvel_theme_acf_json_save_point');
 function markupmarvel_theme_acf_json_save_point( $path ) {
@@ -612,9 +743,119 @@ function markupmarvel_theme_acf_json_save_point( $path ) {
     return $path;
 }
 
-add_filter('acf/settings/load_json', 'markupmarvel_theme_acf_json_load_point');
-function markupmarvel_theme_acf_json_load_point( $paths ) {
-    unset($paths[0]);
-    $paths[] = get_stylesheet_directory() . '/acf-json';
-    return $paths;
-}
+add_action( 'init', function() {
+    header( 'Access-Control-Allow-Origin: *' );
+    header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
+    header( 'Access-Control-Allow-Headers: Content-Type, Authorization' );
+    if ( 'OPTIONS' == $_SERVER['REQUEST_METHOD'] ) {
+        status_header( 200 );
+        exit();
+    }
+});
+
+// ==========================================================================
+// ABOUT TEAM — GraphQL Exposure via parse_blocks()
+// ==========================================================================
+add_action('graphql_register_types', function() {
+
+    register_graphql_object_type('AboutTeamMember', [
+        'description' => 'A single team member',
+        'fields' => [
+            'name'      => ['type' => 'String'],
+            'role'      => ['type' => 'String'],
+            'facebook'  => ['type' => 'String'],
+            'linkedin'  => ['type' => 'String'],
+            'twitter'   => ['type' => 'String'],
+            'instagram' => ['type' => 'String'],
+            'imageUrl'  => ['type' => 'String'],
+            'imageAlt'  => ['type' => 'String'],
+        ],
+    ]);
+
+    register_graphql_object_type('AboutTeamButtonLink', [
+        'description' => 'CTA button for the team section',
+        'fields' => [
+            'url'    => ['type' => 'String'],
+            'title'  => ['type' => 'String'],
+            'target' => ['type' => 'String'],
+        ],
+    ]);
+
+    register_graphql_object_type('AboutTeamBlockData', [
+        'description' => 'Data from the About Team ACF block',
+        'fields' => [
+            'teamTitle'   => ['type' => 'String'],
+            'teamMembers' => ['type' => ['list_of' => 'AboutTeamMember']],
+            'teamButton'  => ['type' => 'AboutTeamButtonLink'],
+        ],
+    ]);
+
+    register_graphql_field('Page', 'aboutTeam', [
+        'type'        => 'AboutTeamBlockData',
+        'description' => 'Reads team data from the acf/about-team block on this page',
+        'resolve'     => function($post) {
+            $post_obj = get_post($post->databaseId);
+            if (!$post_obj) return null;
+
+            $blocks = parse_blocks($post_obj->post_content);
+
+            foreach ($blocks as $block) {
+                if ($block['blockName'] !== 'acf/about-team') continue;
+
+                $data     = $block['attrs']['data'] ?? [];
+                $block_id = 'block_' . ($block['attrs']['id'] ?? 'about_team');
+
+                if (!function_exists('acf_setup_meta')) return null;
+
+                acf_setup_meta($data, $block_id, true);
+
+                $team_title  = get_field('team_title')  ?: '';
+                $members_raw = get_field('team_members') ?: [];
+                $btn_raw     = get_field('team_button');
+
+                acf_reset_meta($block_id);
+
+                $members = [];
+                foreach ((array) $members_raw as $m) {
+                    $img       = $m['image'] ?? null;
+                    $image_url = '';
+                    $image_alt = '';
+                    if (is_array($img)) {
+                        $image_url = $img['url'] ?? '';
+                        $image_alt = $img['alt'] ?? '';
+                    } elseif (is_numeric($img) && $img) {
+                        $image_url = wp_get_attachment_url((int)$img) ?: '';
+                        $image_alt = get_post_meta((int)$img, '_wp_attachment_image_alt', true) ?: '';
+                    }
+                    $members[] = [
+                        'name'      => $m['name']      ?? '',
+                        'role'      => $m['role']       ?? '',
+                        'facebook'  => $m['facebook']   ?? '',
+                        'linkedin'  => $m['linkedin']   ?? '',
+                        'twitter'   => $m['twitter']    ?? '',
+                        'instagram' => $m['instagram']  ?? '',
+                        'imageUrl'  => $image_url,
+                        'imageAlt'  => $image_alt,
+                    ];
+                }
+
+                $team_button = null;
+                if (is_array($btn_raw) && !empty($btn_raw['url'])) {
+                    $team_button = [
+                        'url'    => $btn_raw['url'],
+                        'title'  => $btn_raw['title']  ?? 'View Team',
+                        'target' => $btn_raw['target'] ?? '_self',
+                    ];
+                }
+
+                return [
+                    'teamTitle'   => $team_title,
+                    'teamMembers' => $members,
+                    'teamButton'  => $team_button,
+                ];
+            }
+
+            return null;
+        },
+    ]);
+});

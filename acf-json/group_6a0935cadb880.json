@@ -3,6 +3,26 @@
     "title": "Block: Find Us",
     "fields": [
         {
+            "key": "field_find_us_label",
+            "label": "Label Text",
+            "name": "find_us_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Short label shown above the logo grid. E.g. \"Technologies and platforms we build with\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Technologies and platforms we build with",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a0935cb526a7",
             "label": "Video Thumbnail",
             "name": "video_thumbnail",
@@ -96,5 +116,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1779006440
+    "modified": 1781521698
 }
