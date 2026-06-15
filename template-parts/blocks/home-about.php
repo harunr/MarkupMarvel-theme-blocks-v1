@@ -5,17 +5,23 @@
  */
 
 // 1. Fetch ALL your ACF data at the top
-$subtitle = get_field('about_subtitle') ?: 'ABOUT US';
-$title    = get_field('about_title') ?: "Let's get to know us more";
-$image    = get_field('about_image');
-$content  = get_field('about_content') ?: '<p>Add your about text here in the WordPress dashboard.</p>';
+$subtitle     = get_field('about_subtitle') ?: 'ABOUT US';
+$title        = get_field('about_title') ?: "Let's get to know us more";
+$image        = get_field('about_image');
+$content      = get_field('about_content') ?: '<p>Add your about text here in the WordPress dashboard.</p>';
+$check_rows   = get_field('buyer_checks') ?: [];
+$buyer_checks = array_map(fn($row) => [
+    'question' => $row['check_question'] ?? '',
+    'answer'   => $row['check_answer'] ?? '',
+], (array) $check_rows);
 ?>
 
 <div class="home-about-wrap wp-block-acf-home-about"
      data-about-subtitle="<?php echo esc_attr($subtitle); ?>"
      data-about-title="<?php echo esc_attr($title); ?>"
      data-about-content="<?php echo esc_attr($content); ?>"
-     data-about-image='<?php echo esc_attr(wp_json_encode($image)); ?>'>
+     data-about-image='<?php echo esc_attr(wp_json_encode($image)); ?>'
+     data-buyer-checks='<?php echo esc_attr(wp_json_encode($buyer_checks)); ?>'>
     
     <div class="common-wrap clear">
         <div class="home-about-inner flex">
