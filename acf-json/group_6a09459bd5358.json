@@ -3,6 +3,22 @@
     "title": "Block: About Process",
     "fields": [
         {
+            "key": "field_process_eyebrow",
+            "label": "Eyebrow",
+            "name": "process_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small label above the heading. E.g. \"How we work\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "How we work",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a09459c5f350",
             "label": "process title",
             "name": "process_title",

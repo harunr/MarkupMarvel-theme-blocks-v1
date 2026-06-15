@@ -1,11 +1,13 @@
 <?php
 // 1. Fetch ALL your ACF data at the top, including the repeater array
-$title = get_field('process_title') ?: 'Our Process';
-$desc  = get_field('process_description') ?: '';
-$steps = get_field('process_steps') ?: []; // Grab the full repeater array!
+$eyebrow = get_field('process_eyebrow') ?: '';
+$title   = get_field('process_title') ?: 'Our Process';
+$desc    = get_field('process_description') ?: '';
+$steps   = get_field('process_steps') ?: []; // Grab the full repeater array!
 ?>
 
 <div class="process-wrap wp-block-acf-about-process"
+     data-eyebrow="<?php echo esc_attr($eyebrow); ?>"
      data-title="<?php echo esc_attr($title); ?>"
      data-description="<?php echo esc_attr($desc); ?>"
      data-steps='<?php echo esc_attr(wp_json_encode($steps)); ?>'>
