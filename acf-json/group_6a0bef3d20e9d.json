@@ -26,6 +26,26 @@
             "max_size": "",
             "mime_types": "",
             "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_service_tags",
+            "label": "Tech Tags",
+            "name": "service_tags",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Comma-separated tech tags shown under the service card. E.g. Next.js, React, GraphQL",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "e.g. Next.js, React, GraphQL",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [

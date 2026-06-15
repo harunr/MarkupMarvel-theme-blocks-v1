@@ -22,11 +22,15 @@ if ( $homepage_services->have_posts() ) {
     while ( $homepage_services->have_posts() ) {
         $homepage_services->the_post();
         
+        $raw_tags = get_field('service_tags', get_the_ID()) ?: '';
+        $tags = array_filter(array_map('trim', explode(',', $raw_tags)));
+
         $services_data[] = array(
             'title'   => get_the_title(),
             'link'    => get_permalink(),
             'excerpt' => wp_trim_words(get_the_excerpt(), 12, '...'),
-            'icon'    => get_field('service_icon', get_the_ID())
+            'icon'    => get_field('service_icon', get_the_ID()),
+            'tags'    => array_values($tags)
         );
     }
     wp_reset_postdata();
