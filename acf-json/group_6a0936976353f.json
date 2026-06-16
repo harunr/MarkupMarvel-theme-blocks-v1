@@ -121,6 +121,18 @@
             ]
         },
         {
+            "key": "field_about_button",
+            "label": "CTA Button",
+            "name": "about_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Button shown at the very bottom of the right column, below the buyer checks.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {"width": "", "class": "", "id": ""},
+            "return_format": "array"
+        },
+        {
             "key": "field_6a0936f840333",
             "label": "Content",
             "name": "about_content",

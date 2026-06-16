@@ -9,6 +9,7 @@ $subtitle     = get_field('about_subtitle') ?: 'ABOUT US';
 $title        = get_field('about_title') ?: "Let's get to know us more";
 $image        = get_field('about_image');
 $content      = get_field('about_content') ?: '<p>Add your about text here in the WordPress dashboard.</p>';
+$about_button = get_field('about_button');
 $check_rows   = get_field('buyer_checks') ?: [];
 $buyer_checks = array_map(fn($row) => [
     'question' => $row['check_question'] ?? '',
@@ -21,6 +22,7 @@ $buyer_checks = array_map(fn($row) => [
      data-about-title="<?php echo esc_attr($title); ?>"
      data-about-content="<?php echo esc_attr($content); ?>"
      data-about-image='<?php echo esc_attr(wp_json_encode($image)); ?>'
+     data-about-button='<?php echo esc_attr(wp_json_encode($about_button)); ?>'
      data-buyer-checks='<?php echo esc_attr(wp_json_encode($buyer_checks)); ?>'>
     
     <div class="common-wrap clear">
