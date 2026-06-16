@@ -1,6 +1,7 @@
 <?php
 $subtitle     = get_field('testimonial_subtitle') ?: 'Client feedback';
 $title        = get_field('testimonial_title') ?: 'What clients say after working with MarkupMarvel';
+$description  = get_field('testimonial_description') ?: '';
 $testimonials_raw = get_field('testimonials_list') ?: [];
 
 $testimonials = [];
@@ -25,6 +26,7 @@ foreach ($testimonials_raw as $row) {
 <div class="testimonial-wrap wp-block-acf-testimonials"
      data-subtitle="<?php echo esc_attr($subtitle); ?>"
      data-title="<?php echo esc_attr($title); ?>"
+     data-description="<?php echo esc_attr($description); ?>"
      data-testimonials='<?php echo esc_attr(wp_json_encode($testimonials)); ?>'>
 
     <div class="common-wrap clear">

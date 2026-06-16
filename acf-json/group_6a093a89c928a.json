@@ -43,6 +43,26 @@
             "append": ""
         },
         {
+            "key": "field_testi_description",
+            "label": "Description",
+            "name": "testimonial_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short paragraph shown below the section heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
             "key": "field_6a093add32b21",
             "label": "Testimonials List",
             "name": "testimonials_list",
