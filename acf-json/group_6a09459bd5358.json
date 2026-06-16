@@ -81,6 +81,28 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
+                    "key": "field_process_step_icon",
+                    "label": "Step Icon",
+                    "name": "step_icon",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Upload an SVG or PNG icon for this step (recommended 48×48px).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {"width": "20", "class": "", "id": ""},
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "preview_size": "thumbnail",
+                    "parent_repeater": "field_6a0945c75f352"
+                },
+                {
                     "key": "field_6a0945ea5f353",
                     "label": "step title",
                     "name": "step_title",
