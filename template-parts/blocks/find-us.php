@@ -7,12 +7,15 @@
 // 1. Fetch ALL your ACF data at the top
 $find_us_label = get_field('find_us_label') ?: '';
 $video_thumb   = get_field('video_thumbnail');
+$video_url_raw = get_field('video_url') ?: get_field('video_file');
+$video_url     = is_array($video_url_raw) ? ($video_url_raw['url'] ?? '') : ($video_url_raw ?: '');
 $company_logos = get_field('company_logos') ?: []; // Grab the full repeater array!
 ?>
 
 <div class="find-us-wrap wp-block-acf-find-us"
      data-find-us-label="<?php echo esc_attr($find_us_label); ?>"
      data-video-thumbnail='<?php echo esc_attr(wp_json_encode($video_thumb)); ?>'
+     data-video-url="<?php echo esc_attr($video_url); ?>"
      data-company-logos='<?php echo esc_attr(wp_json_encode($company_logos)); ?>'>
     
     <div class="common-wrap clear">

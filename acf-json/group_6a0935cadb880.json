@@ -48,6 +48,26 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_find_us_video_url",
+            "label": "Video File",
+            "name": "video_url",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Upload the compressed MP4 video from the Media Library.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4"
+        },
+        {
             "key": "field_6a093638526a8",
             "label": "Company Logos",
             "name": "company_logos",
@@ -116,5 +136,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1781521698
+    "modified": 1781740800
 }
