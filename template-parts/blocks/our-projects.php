@@ -5,9 +5,10 @@
  */
 
 // 1. Fetch static ACF fields
-$subtitle = get_field('projects_subtitle') ?: 'OUR PROJECTS';
-$title    = get_field('projects_title') ?: 'Our latest awesome projects';
-$cta_btn  = get_field('projects_cta_button');
+$subtitle     = get_field('projects_subtitle') ?: 'OUR PROJECTS';
+$title        = get_field('projects_title') ?: 'Our latest awesome projects';
+$description  = get_field('projects_description') ?: '';
+$cta_btn      = get_field('projects_cta_button');
 
 // 2. Run the WP_Query and package the dynamic data into an array for Next.js
 $projects_data = [];
@@ -52,6 +53,7 @@ if ( $work_query->have_posts() ) {
 <div class="our-project-wrap wp-block-acf-our-projects" style="padding: 80px 0;"
      data-subtitle="<?php echo esc_attr($subtitle); ?>"
      data-title="<?php echo esc_attr($title); ?>"
+     data-description="<?php echo esc_attr($description); ?>"
      data-cta-btn='<?php echo esc_attr(wp_json_encode($cta_btn)); ?>'
      data-projects='<?php echo esc_attr(wp_json_encode($projects_data)); ?>'>
     
