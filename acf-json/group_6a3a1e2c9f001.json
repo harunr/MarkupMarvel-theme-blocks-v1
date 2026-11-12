@@ -1,0 +1,227 @@
+{
+    "key": "group_6a3a1e2c9f001",
+    "title": "Block: Workflow Trust",
+    "fields": [
+        {
+            "key": "field_6a3a1e2c9f002",
+            "label": "Heading",
+            "name": "heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Section heading shown above the logo groups. E.g. \"Seamless Onboarding & Project Management\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a3a1e2c9f003",
+            "label": "Payment Label",
+            "name": "payment_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Label shown above the payment logos row.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Payment",
+            "maxlength": "",
+            "placeholder": "Payment",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a3a1e2c9f004",
+            "label": "Payment Logos",
+            "name": "payment_logos",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "One row per payment provider logo (Stripe, PayPal, Wise, etc.)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_6a3a1e2c9f006",
+            "button_label": "Add Logo",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6a3a1e2c9f005",
+                    "label": "Logo Image",
+                    "name": "logo_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Cropped tight to the mark, transparent background.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "png",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_6a3a1e2c9f004"
+                },
+                {
+                    "key": "field_6a3a1e2c9f006",
+                    "label": "Logo Name",
+                    "name": "logo_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Used as alt text, e.g. \"Stripe\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6a3a1e2c9f004"
+                }
+            ]
+        },
+        {
+            "key": "field_6a3a1e2c9f007",
+            "label": "PM Label",
+            "name": "pm_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Label shown above the communication/design/PM tool logos row.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Communication, Design & Project Management",
+            "maxlength": "",
+            "placeholder": "Communication, Design & Project Management",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a3a1e2c9f008",
+            "label": "PM Logos",
+            "name": "pm_logos",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "One row per communication/design/PM tool logo (Slack, Figma, ClickUp, etc.)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_6a3a1e2c9f010",
+            "button_label": "Add Logo",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6a3a1e2c9f009",
+                    "label": "Logo Image",
+                    "name": "logo_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Cropped tight to the mark, transparent background.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "png",
+                    "preview_size": "medium",
+                    "parent_repeater": "field_6a3a1e2c9f008"
+                },
+                {
+                    "key": "field_6a3a1e2c9f010",
+                    "label": "Logo Name",
+                    "name": "logo_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Used as alt text, e.g. \"Slack\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6a3a1e2c9f008"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/workflow-trust"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1785500000
+}

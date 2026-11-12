@@ -417,6 +417,16 @@ function markupmarvel_acf_init_block_types() {
         ));
 
         acf_register_block_type(array(
+            'name'              => 'workflow-trust',
+            'title'             => __('Pricing: Workflow Trust (Payment / PM Tool Logos)'),
+            'description'       => __('Heading plus two logo groups: payment providers and communication/design/PM tools.'),
+            'render_template'   => 'template-parts/blocks/workflow-trust.php',
+            'category'          => 'layout',
+            'icon'              => 'images-alt2',
+            'keywords'          => array( 'logos', 'trust', 'payment', 'workflow' ),
+        ));
+
+        acf_register_block_type(array(
             'name'              => 'faq-accordion',
             'title'             => __('Pricing: FAQ Accordion'),
             'render_template'   => 'template-parts/blocks/faq-accordion.php',
